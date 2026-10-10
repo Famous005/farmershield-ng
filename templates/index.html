@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmerShield NG — Protect Yourself from Agro Scams</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <span class="logo-icon">🛡️</span>
+                <div>
+                    <h1>FarmerShield NG</h1>
+                    <p>Powered by N-ATLAS &mdash; Nigeria's Sovereign AI</p>
+                </div>
+            </div>
+            <div class="natlas-badge">
+                <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg"
+                     alt="HuggingFace" width="20">
+                N-ATLAS Integrated
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-inner">
+            <h2 id="heroTitle">Is This Message a Scam?</h2>
+            <p id="heroSubtitle">Paste or speak any suspicious offer, message, or call you received. FarmerShield NG will analyze it in your language and tell you exactly what to do.</p>
+            <div class="hero-tags">
+                <span id="heroTag1">🌾 Fertiliser Scams</span>
+                <span id="heroTag2">💰 Fake Subsidies</span>
+                <span id="heroTag3">📱 WhatsApp Fraud</span>
+                <span id="heroTag4">🏦 Fake Loans</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN -->
+    <main class="container">
+
+        <!-- LANGUAGE -->
+        <div class="card">
+            <label class="card-label">Choose Your Language / Zaɓi Harshe / Yan Ede / Họn asụsụ</label>
+            <div class="language-grid">
+                <button class="lang-btn active" data-lang="english">🇬🇧 English</button>
+                <button class="lang-btn" data-lang="hausa">🇳🇬 Hausa</button>
+                <button class="lang-btn" data-lang="yoruba">🇳🇬 Yoruba</button>
+                <button class="lang-btn" data-lang="igbo">🇳🇬 Igbo</button>
+            </div>
+        </div>
+
+        <!-- INPUT -->
+        <div class="card">
+            <label class="card-label" id="inputLabel">Paste the suspicious message below</label>
+            <textarea id="messageInput"
+                placeholder="Example: Government don release fertiliser subsidy. Send ₦5,000 to activate your slot..."
+                maxlength="2000"></textarea>
+            <div class="char-count"><span id="charCount">0</span>/2000</div>
+            <div class="action-row">
+                <button class="btn-voice" id="voiceBtn">
+                    🎤 <span id="voiceBtnText">Speak</span>
+                </button>
+                <button class="btn-analyze" id="analyzeBtn">
+                    <span id="analyzeBtnText">🔍 Analyze Message</span>
+                </button>
+            </div>
+            <div class="voice-status" id="voiceStatus"></div>
+        </div>
+
+        <!-- RESULT -->
+        <div class="card result-card" id="resultCard" style="display:none;">
+            <div class="risk-banner" id="riskBanner">
+                <span class="risk-icon" id="riskIcon"></span>
+                <div>
+                    <div class="risk-label" id="riskLabel"></div>
+                    <div class="risk-sublabel" id="riskSublabel"></div>
+                </div>
+            </div>
+            <div class="section-label" id="msgAnalyzedLabel">MESSAGE ANALYZED:</div>
+            <div class="original-message" id="originalMessage"></div>
+            <div id="transcriptionBox" style="display:none;">
+                <div class="section-label" id="transcriptLabel">WHAT WE HEARD:</div>
+                <div class="transcription-text" id="transcriptionText"></div>
+            </div>
+            <div class="section-label">
+                <span id="analysisLabel">ANALYSIS BY N-ATLAS</span>
+                <span class="natlas-tag">N-ATLAS</span>
+            </div>
+            <div class="analysis-text" id="analysisText"></div>
+            <div class="result-actions">
+                <button class="btn-new" id="newAnalysisBtn">🔄 Analyze Another Message</button>
+                <button class="btn-share" id="shareBtn">📋 Copy Result</button>
+            </div>
+        </div>
+
+        <!-- LOADING -->
+        <div class="card loading-card" id="loadingCard" style="display:none;">
+            <div class="spinner"></div>
+            <p id="loadingText">Sending for analysis...</p>
+            <small id="loadingSmall">This may take up to 30 seconds</small>
+        </div>
+
+        <!-- ERROR -->
+        <div class="card error-card" id="errorCard" style="display:none;">
+            <span class="error-icon">⚠️</span>
+            <p id="errorText"></p>
+            <button class="btn-new" id="retryBtn">Try Again</button>
+        </div>
+
+        <!-- HOW IT WORKS -->
+        <div class="card how-it-works">
+            <h3 id="howTitle">How FarmerShield NG Works</h3>
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-text">
+                        <strong id="step1Title">Paste or Speak</strong>
+                        <p id="step1Text">Type or say the suspicious message you received</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-text">
+                        <strong id="step2Title">AI Analyzes</strong>
+                        <p id="step2Text">Nigeria's AI checks it for known scam patterns</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-text">
+                        <strong id="step3Title">Get Your Verdict</strong>
+                        <p id="step3Text">Receive a clear answer in your language with advice on what to do</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCAMS -->
+        <div class="card">
+            <h3 id="scamsTitle">Common Scams to Watch Out For</h3>
+            <div class="scam-grid">
+                <div class="scam-item" data-message="Send N5000 to activate your government fertiliser subsidy slot">
+                    <span>🌱</span>
+                    <p id="scam1Label">Fertiliser Subsidy Scam</p>
+                </div>
+                <div class="scam-item" data-message="You have won a tractor from the government. Pay N10,000 delivery fee">
+                    <span>🚜</span>
+                    <p id="scam2Label">Equipment Prize Scam</p>
+                </div>
+                <div class="scam-item" data-message="Anchor Borrowers Programme loan approved. Pay N2000 processing fee to receive funds">
+                    <span>🏦</span>
+                    <p id="scam3Label">Fake Agro Loan</p>
+                </div>
+                <div class="scam-item" data-message="Send your BVN and account number to receive your NIRSAL farm loan">
+                    <span>🔐</span>
+                    <p id="scam4Label">BVN Harvesting Scam</p>
+                </div>
+            </div>
+            <p class="scam-hint" id="scamHint">👆 Tap any scam above to test FarmerShield NG instantly</p>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <p id="footerBuilt">Built for the <strong>National AI Innovation Challenge 2026</strong> &mdash; NCAIR / NITDA</p>
+            <p id="footerPowered">Powered by <strong>N-ATLAS</strong> &mdash; Nigeria's Sovereign AI Model</p>
+            <div class="footer-badges">
+                <span id="footerBadge1">🇳🇬 Made in Nigeria</span>
+                <span id="footerBadge2">🤖 N-ATLAS Powered</span>
+                <span id="footerBadge3">🛡️ Free to Use</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
